@@ -43,6 +43,9 @@ body {
   transition: opacity 0.5s ease, transform 0.5s ease;
   opacity: 0;
   transform: translatey(-50px);
+  max-width: 90vw;
+  margin: 0 auto;
+  text-align: center;
   color: #334;
 }
 #container .game-over h2 {
@@ -66,10 +69,11 @@ body {
   opacity: 0;
   transform: translatey(-50px);
   border: 3px solid #334;
-  padding: 10px 20px;
+  padding: 10px 30px;
   background-color: transparent;
   color: #334;
   font-size: 30px;
+  border-radius: 1rem;
 }
 #container #instructions {
   position: absolute;

@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="theme-color" content="#ffffff" />
+  <link rel="manifest" href="manifest.json" />
+  <link rel="stylesheet" href="assets/css/style.css" />
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bungee&display=swap" />
+  <title>Stop N Stack</title>
+</head>
+
+<body>
+  <div id="container">
+    <div id="game"></div>
+    <div id="score">0</div>
+    <div id="instructions" class="desktop">Click or press the spacebar to place the block</div>
+    <div id="instructions" class="mobile">Touch the screen to place the block</div>
+    <div class="game-over">
+      <h2>Game Over</h2>
+      <p>You did great, you're the best.</p>
+      <p>Click or spacebar to start again</p>
+    </div>
+    <div class="game-ready">
+      <div id="start-button">Start</div>
+      <div></div>
+    </div>
+    <button onclick="addToHomeScreen()" id="'a2hs-prompt">Thêm vào màn hình chính</button>
+  </div>
+
+  <script src="assets/js/three.js"></script>
+  <script src="assets/js/tweenlite.js"></script>
+  <script src="assets/js/main.js"></script>
+  <script src="upup.min.js"></script>
+  <script>
+    function isMobileDevice() {
+      return /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
+    }
+
+    var desktopInstructions = document.querySelector("#instructions.desktop");
+    var mobileInstructions = document.querySelector(".mobile");
+
+    if (isMobileDevice()) {
+      desktopInstructions.style.display = "none";
+      mobileInstructions.style.display = "block";
+    } else {
+      desktopInstructions.style.display = "block";
+      mobileInstructions.style.display = "none";
+    }
+  </script>
+  <script>
+    function addToHomeScreen() {
+      var a2hsPrompt = document.getElementById("a2hs-prompt");
+      // Hiển thị thông báo
+      a2hsPrompt.style.display = "block";
+      // Đăng ký sự kiện nhấp vào nút "Thêm"
+      document.getElementById("a2hs-button").addEventListener("click", function() {
+        // Thêm ứng dụng vào màn hình chính
+        addToHomeScreen.prompt.prompt();
+        // Ẩn thông báo
+        a2hsPrompt.style.display = "none";
+      });
+    }
+  </script>
+  <script>
+    if (UpUp !== null) {
+      UpUp.start({
+        // 'cache-version': window.gameVersion,
+        "cache-version": "0.1",
+        "content-url": "index.html",
+        assets: [
+          "assets/js/main.js",
+          "assets/js/three.js",
+          "assets/js/tweenlite.js",
+          "assets/css/style.css",
+          "assets/icons/icon-16x16.png",
+          "assets/icons/icon-32x32.png",
+          "assets/icons/icon-48x48.png",
+          "assets/icons/icon-64x64.png",
+          "assets/icons/icon-128x128.png",
+          "assets/icons/icon-256x256.png",
+        ],
+      });
+    }
+  </script>
+</body>
+
+</html>

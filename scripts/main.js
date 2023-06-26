@@ -1,4 +1,5 @@
 console.clear();
+
 var Stage = /** @class */ (function () {
   function Stage() {
     // container
@@ -60,6 +61,7 @@ var Stage = /** @class */ (function () {
   };
   return Stage;
 })();
+
 var Block = /** @class */ (function () {
   function Block(block) {
     // set size and position
@@ -191,6 +193,7 @@ var Block = /** @class */ (function () {
   };
   return Block;
 })();
+
 var Game = /** @class */ (function () {
   function Game() {
     var _this = this;
@@ -208,6 +211,7 @@ var Game = /** @class */ (function () {
     this.scoreContainer = document.getElementById("score");
     this.startButton = document.getElementById("start-button");
     this.instructions = document.getElementById("instructions");
+    this.gameResult = document.getElementById("game-result");
     this.scoreContainer.innerHTML = "0";
     this.newBlocks = new THREE.Group();
     this.placedBlocks = new THREE.Group();
@@ -341,6 +345,20 @@ var Game = /** @class */ (function () {
     if (this.blocks.length >= 5) this.instructions.classList.add("hide");
   };
   Game.prototype.endGame = function () {
+    var highestScore = Number(localStorage.getItem("stop_n_stack_highest_score"));
+    var score = Number(this.scoreContainer.innerHTML);
+    if (score > highestScore) {
+      localStorage.setItem("stop_n_stack_highest_score", score);
+      this.gameResult.innerHTML = "Amazing! You have broken the record!";
+    } else if (score > (3 / 4) * highestScore) {
+      this.gameResult.innerHTML = "You're about to break the record soon, keep it up!";
+    } else if (score > (2 / 4) * highestScore) {
+      this.gameResult.innerHTML = "Great job, keep up the good work!";
+    } else if (score > (1 / 4) * highestScore) {
+      this.gameResult.innerHTML = "Your performance is not as good as usual";
+    } else {
+      this.gameResult.innerHTML = "I believe that was just an accident. Let's give it another try!";
+    }
     this.updateState(this.STATES.ENDED);
   };
   Game.prototype.tick = function () {

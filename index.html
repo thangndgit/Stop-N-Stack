@@ -7,9 +7,10 @@
     <meta name="apple-mobile-web-app-capable" content="yes" />
     <meta name="apple-mobile-web-app-status-bar-style" content="black" />
     <meta name="apple-mobile-web-app-title" content="Weather PWA" />
+    <link rel="icon" type="image/png" href="favicon.png" />
     <link rel="apple-touch-icon" href="assets/icons//icon-128x128.png" />
     <link rel="manifest" href="manifest.json" />
-    <link rel="stylesheet" href="assets/css/style.css" />
+    <link rel="stylesheet" href="styles/style.css" />
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bungee&display=swap" />
     <title>Stop N Stack</title>
   </head>
@@ -22,20 +23,25 @@
       <div id="instructions" class="mobile">Touch the screen to place the block</div>
       <div class="game-over">
         <h2>Game Over</h2>
-        <p id="game-result">You did great, you're the best</p>
-        <p class="desktop">Click or press space to start again</p>
-        <p class="mobile">Touch screen to start again</p>
+        <div id="game-result-1">You did great, you're the best</div>
+        <div id="game-result-2"></div>
       </div>
       <div class="game-ready">
         <div id="start-button">Start</div>
-        <div></div>
       </div>
       <button id="install-button" aria-label="Install" hidden></button>
     </div>
 
+    <script>
+      document.addEventListener("contextmenu", function (e) {
+        e.preventDefault();
+      });
+    </script>
     <script src="assets/js/three.js"></script>
     <script src="assets/js/tweenlite.js"></script>
-    <script src="scripts/main.js"></script>
+    <script src="src/stage.js"></script>
+    <script src="src/block.js"></script>
+    <script src="src/game.js"></script>
     <script src="scripts/device-content.js"></script>
     <script src="scripts/app-install.js"></script>
     <script src="upup.min.js"></script>
@@ -45,9 +51,11 @@
           "cache-version": "0.1",
           "content-url": "index.html",
           assets: [
+            "index.html",
+            "favicon.png",
+            "manifest.json",
             "assets/js/three.js",
             "assets/js/tweenlite.js",
-            "assets/css/style.css",
             "assets/icons/icon-72x72.png",
             "assets/icons/icon-96x96.png",
             "assets/icons/icon-128x128.png",
@@ -57,8 +65,23 @@
             "assets/icons/icon-256x256.png",
             "assets/icons/icon-384x384.png",
             "assets/icons/icon-512x512.png",
-            "scripts/main.js",
+            "assets/sounds/miss.mp3",
+            "assets/sounds/score.mp3",
+            "assets/sounds/break-record.mp3",
+            "assets/sounds/score-perfect-1.wav",
+            "assets/sounds/score-perfect-2.wav",
+            "assets/sounds/score-perfect-3.wav",
+            "assets/sounds/score-perfect-4.wav",
+            "assets/sounds/score-perfect-5.wav",
+            "assets/sounds/score-perfect-6.wav",
+            "assets/sounds/score-perfect-7.wav",
+            "assets/sounds/score-perfect-8.wav",
+            "styles/style.css",
+            "scripts/app-install.js",
             "scripts/device-content.js",
+            "src/stage.js",
+            "src/block.js",
+            "src/game.js",
           ],
         });
       }

@@ -155,13 +155,13 @@ class Block {
       if (!blocksToReturn.bonus) blocksToReturn.chopped = choppedMesh;
 
       // Play sound
-      if (this.perfectCount) new Audio(`/assets/sounds/score-perfect-${Math.min(this.perfectCount, 8)}.wav`).play();
-      else new Audio("/assets/sounds/score.mp3").play();
+      if (this.perfectCount) new Audio(SOUNDS.score[Math.min(this.perfectCount, 8)]).play();
+      else new Audio(SOUNDS.score[0]).play();
     }
     // If there is no overlap, set the state to MISSED
     else {
       this.state = this.STATES.MISSED;
-      const missSound = new Audio("/assets/sounds/miss.mp3");
+      const missSound = new Audio(SOUNDS.miss);
       missSound.volume = 0.3;
       missSound.play();
     }

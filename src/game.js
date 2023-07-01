@@ -68,6 +68,7 @@ class Game {
 
   startGame() {
     if (this.state != this.STATES.PLAYING) {
+      new Audio(SOUNDS.start).play();
       this.scoreContainer.innerHTML = "0";
       this.updateState(this.STATES.PLAYING);
       this.addBlock();
@@ -184,7 +185,7 @@ class Game {
     if (score > highestScore) {
       this.gameResult1.innerHTML = "Congratulations!";
       this.gameResult2.innerHTML = "You have broken your own record!";
-      new Audio("/assets/sounds/break-record.mp3").play();
+      new Audio(SOUNDS.breakRecord).play();
       localStorage.setItem("sns_highest-score", score);
     } else if (score >= highestScore / 2 && highestScore - score < 10) {
       this.gameResult1.innerHTML = `You're about to break the record!`;
@@ -213,4 +214,5 @@ class Game {
   }
 }
 
-var game = new Game();
+let game = new Game();
+new Audio(SOUNDS.start).play();

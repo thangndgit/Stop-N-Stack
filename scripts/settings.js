@@ -1,7 +1,7 @@
 const soundButton = document.getElementById("sound-button");
 const difficultButton = document.getElementById("difficult-button");
 const statsOpenButton = document.getElementById("stats-button");
-const statsCloseButton = document.getElementById("stats-close-button");
+// const statsCloseButton = document.getElementById("stats-close-button");
 const difficultAlert = document.getElementById("difficult-alert");
 const statsAlert = document.getElementById("stats-alert");
 
@@ -15,9 +15,9 @@ const iconsDifficult = [
   '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24"><path d="M7.105,9.553a1,1,0,0,1,1.342-.448l2,1a1,1,0,0,1-.894,1.79l-2-1A1,1,0,0,1,7.105,9.553Zm8.448-.448-2,1a1,1,0,0,0,.894,1.79l2-1a1,1,0,1,0-.894-1.79Zm-.328,5.263a4,4,0,0,1-6.45,0,1,1,0,0,0-1.55,1.264,6,6,0,0,0,9.55,0,1,1,0,1,0-1.55-1.264ZM23,2V12A11,11,0,0,1,1,12V2a1,1,0,0,1,1.316-.949l4.229,1.41a10.914,10.914,0,0,1,10.91,0l4.229-1.41A1,1,0,0,1,23,2ZM21,12a9,9,0,1,0-9,9A9.029,9.029,0,0,0,21,12Z"/></svg>',
 ];
 const iconsDifficultAlert = [
-  '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="#22bb33"><path d="M10,9v2a1,1,0,0,1-2,0V9a1,1,0,0,1,2,0Zm5-1a1,1,0,0,0-1,1v2a1,1,0,0,0,2,0V9A1,1,0,0,0,15,8Zm8,4A11,11,0,1,1,12,1,11.013,11.013,0,0,1,23,12Zm-2,0a9,9,0,1,0-9,9A9.01,9.01,0,0,0,21,12Z"/></svg><span class="text-lg">Easy Mode</span>',
-  '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="#f0ad4e"><path d="M12,1A11,11,0,1,0,23,12,11.013,11.013,0,0,0,12,1Zm0,20a9,9,0,1,1,9-9A9.011,9.011,0,0,1,12,21Zm6-8A6,6,0,0,1,6,13a1,1,0,0,1,2,0,4,4,0,0,0,8,0,1,1,0,0,1,2,0ZM8,10V9a1,1,0,0,1,2,0v1a1,1,0,0,1-2,0Zm6,0V9a1,1,0,0,1,2,0v1a1,1,0,0,1-2,0Z"/></svg><span class="text-lg">Medium Mode</span>',
-  '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="#bb2124"><path d="M7.105,9.553a1,1,0,0,1,1.342-.448l2,1a1,1,0,0,1-.894,1.79l-2-1A1,1,0,0,1,7.105,9.553Zm8.448-.448-2,1a1,1,0,0,0,.894,1.79l2-1a1,1,0,1,0-.894-1.79Zm-.328,5.263a4,4,0,0,1-6.45,0,1,1,0,0,0-1.55,1.264,6,6,0,0,0,9.55,0,1,1,0,1,0-1.55-1.264ZM23,2V12A11,11,0,0,1,1,12V2a1,1,0,0,1,1.316-.949l4.229,1.41a10.914,10.914,0,0,1,10.91,0l4.229-1.41A1,1,0,0,1,23,2ZM21,12a9,9,0,1,0-9,9A9.029,9.029,0,0,0,21,12Z"/></svg><span class="text-lg">Hard Mode</span>',
+  '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="#22bb33"><path d="M10,9v2a1,1,0,0,1-2,0V9a1,1,0,0,1,2,0Zm5-1a1,1,0,0,0-1,1v2a1,1,0,0,0,2,0V9A1,1,0,0,0,15,8Zm8,4A11,11,0,1,1,12,1,11.013,11.013,0,0,1,23,12Zm-2,0a9,9,0,1,0-9,9A9.01,9.01,0,0,0,21,12Z"/></svg><span class="text-xl">Easy Mode</span>',
+  '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="#f0ad4e"><path d="M12,1A11,11,0,1,0,23,12,11.013,11.013,0,0,0,12,1Zm0,20a9,9,0,1,1,9-9A9.011,9.011,0,0,1,12,21Zm6-8A6,6,0,0,1,6,13a1,1,0,0,1,2,0,4,4,0,0,0,8,0,1,1,0,0,1,2,0ZM8,10V9a1,1,0,0,1,2,0v1a1,1,0,0,1-2,0Zm6,0V9a1,1,0,0,1,2,0v1a1,1,0,0,1-2,0Z"/></svg><span class="text-xl">Medium Mode</span>',
+  '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="#bb2124"><path d="M7.105,9.553a1,1,0,0,1,1.342-.448l2,1a1,1,0,0,1-.894,1.79l-2-1A1,1,0,0,1,7.105,9.553Zm8.448-.448-2,1a1,1,0,0,0,.894,1.79l2-1a1,1,0,1,0-.894-1.79Zm-.328,5.263a4,4,0,0,1-6.45,0,1,1,0,0,0-1.55,1.264,6,6,0,0,0,9.55,0,1,1,0,1,0-1.55-1.264ZM23,2V12A11,11,0,0,1,1,12V2a1,1,0,0,1,1.316-.949l4.229,1.41a10.914,10.914,0,0,1,10.91,0l4.229-1.41A1,1,0,0,1,23,2ZM21,12a9,9,0,1,0-9,9A9.029,9.029,0,0,0,21,12Z"/></svg><span class="text-xl">Hard Mode</span>',
 ];
 
 window.onload = () => {
@@ -75,12 +75,12 @@ statsOpenButton.addEventListener("click", () => {
     },
   };
 
-  let previousElement = statsCloseButton.previousElementSibling;
-  while (previousElement) {
-    let elementToRemove = previousElement;
-    previousElement = previousElement.previousElementSibling;
-    elementToRemove.parentNode.removeChild(elementToRemove);
-  }
+  // let previousElement = statsCloseButton.previousElementSibling;
+  // while (previousElement) {
+  //   let elementToRemove = previousElement;
+  //   previousElement = previousElement.previousElementSibling;
+  //   elementToRemove.parentNode.removeChild(elementToRemove);
+  // }
 
   const statsHTML = `
     <span class="text-xl">Your stats</span>
@@ -110,10 +110,15 @@ statsOpenButton.addEventListener("click", () => {
     </span>
   `;
 
-  statsCloseButton.insertAdjacentHTML("beforebegin", statsHTML);
+  statsAlert.innerHTML = statsHTML;
 });
 
-statsCloseButton.addEventListener("click", () => {
+statsAlert.addEventListener("click", () => {
   playSound(SOUNDS.click);
   statsAlert.classList.toggle("hidden");
 });
+
+// statsCloseButton.addEventListener("click", () => {
+//   playSound(SOUNDS.click);
+//   statsAlert.classList.toggle("hidden");
+// });

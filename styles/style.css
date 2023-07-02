@@ -155,9 +155,9 @@ body {
 #container #stats-alert {
   display: flex;
   flex-direction: column;
-  justify-content: center;
+  justify-content: space-evenly;
   align-items: center;
-  gap: 10vh;
+  /* gap: 10vh; */
   width: 100vw;
   height: 100vh;
   padding: 5vw;

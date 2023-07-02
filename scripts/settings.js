@@ -45,8 +45,10 @@ difficultButton.addEventListener("click", () => {
 
   difficultButton.innerHTML = iconsDifficult[currentDL % 3];
   difficultAlert.innerHTML = iconsDifficultAlert[currentDL % 3];
-  difficultAlert.classList.toggle("hidden");
-  setTimeout(() => difficultAlert.classList.toggle("hidden"), 1500);
+  difficultAlert.classList.remove("hidden");
+  setTimeout(() => {
+    if (!difficultAlert.classList.contains("hidden")) difficultAlert.classList.add("hidden");
+  }, 1500);
 
   currentDL = (currentDL % 3) + 1;
 
@@ -55,7 +57,7 @@ difficultButton.addEventListener("click", () => {
 
 statsOpenButton.addEventListener("click", () => {
   playSound(SOUNDS.click);
-  statsAlert.classList.toggle("hidden");
+  statsAlert.classList.remove("hidden");
 
   const stats = JSON.parse(localStorage.getItem(KEYS.stats)) || {
     easy: {
@@ -75,14 +77,7 @@ statsOpenButton.addEventListener("click", () => {
     },
   };
 
-  // let previousElement = statsCloseButton.previousElementSibling;
-  // while (previousElement) {
-  //   let elementToRemove = previousElement;
-  //   previousElement = previousElement.previousElementSibling;
-  //   elementToRemove.parentNode.removeChild(elementToRemove);
-  // }
-
-  const statsHTML = `
+  statsAlert.innerHTML = `
     <span class="text-xl">Your stats</span>
     <span>
       <label class="text-lg">Easy mode</label>
@@ -109,16 +104,13 @@ statsOpenButton.addEventListener("click", () => {
       </ul>
     </span>
   `;
-
-  statsAlert.innerHTML = statsHTML;
 });
 
-statsAlert.addEventListener("click", () => {
+statsAlert.addEventListener("click", (e) => {
   playSound(SOUNDS.click);
-  statsAlert.classList.toggle("hidden");
+  if (!statsAlert.classList.contains("hidden")) statsAlert.classList.add("hidden");
 });
 
-// statsCloseButton.addEventListener("click", () => {
-//   playSound(SOUNDS.click);
-//   statsAlert.classList.toggle("hidden");
-// });
+statsOpenButton.addEventListener("mousedown", (e) => e.preventDefault());
+difficultButton.addEventListener("mousedown", (e) => e.preventDefault());
+soundButton.addEventListener("mousedown", (e) => e.preventDefault());

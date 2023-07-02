@@ -29,7 +29,13 @@ class Game {
 
     // Event listeners
     document.addEventListener("keydown", (e) => {
-      if (e.keyCode == 32) this.onAction();
+      if (e.key === " ") {
+        const statsAlert = document.getElementById("stats-alert");
+        const difficultAlert = document.getElementById("difficult-alert");
+        if (!statsAlert.classList.contains("hidden")) statsAlert.classList.add("hidden");
+        if (!difficultAlert.classList.contains("hidden")) difficultAlert.classList.add("hidden");
+        this.onAction();
+      }
     });
 
     document.addEventListener("click", (e) => {

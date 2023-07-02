@@ -63,7 +63,7 @@ class Game {
   }
 
   startGame() {
-    playSound(SOUNDS.click);
+    playSound(SOUNDS.score[0]);
     if (this.state != this.STATES.PLAYING) {
       this.scoreContainer.innerHTML = "0";
       this.updateState(this.STATES.PLAYING);

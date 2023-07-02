@@ -75,6 +75,13 @@ statsOpenButton.addEventListener("click", () => {
     },
   };
 
+  let previousElement = statsCloseButton.previousElementSibling;
+  while (previousElement) {
+    let elementToRemove = previousElement;
+    previousElement = previousElement.previousElementSibling;
+    elementToRemove.parentNode.removeChild(elementToRemove);
+  }
+
   const statsHTML = `
     <span class="text-xl">Your stats</span>
     <span>

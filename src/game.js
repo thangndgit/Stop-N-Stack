@@ -71,8 +71,8 @@ class Game {
   }
 
   startGame() {
+    playSound(SOUNDS.click);
     if (this.state != this.STATES.PLAYING) {
-      playSound(SOUNDS.click);
       this.scoreContainer.innerHTML = "0";
       this.updateState(this.STATES.PLAYING);
       this.addBlock();
@@ -206,7 +206,9 @@ class Game {
     const highScore = stats[difficultLabel].highScore;
 
     if (score > highScore) {
-      playSound(SOUNDS.breakRecord, 0.35);
+      setTimeout(() => {
+        playSound(SOUNDS.breakRecord, 0.35);
+      }, 500);
       this.gameResult1.innerHTML = "Congratulations!";
       this.gameResult2.innerHTML = "You have broken your own record!";
       stats[difficultLabel].highScore = score;

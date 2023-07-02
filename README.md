@@ -45,7 +45,3 @@ To set up the development environment and run the game locally, follow these ste
 ## Feedback and Contributions
 
 If you have any feedback, suggestions, or bug reports, please feel free to open an issue on the [GitHub repository](https://github.com/thangndgit/Stop-N-Stack). Contributions to the project are also welcome.
-
-## License
-
-This project is licensed under the [MIT License](LICENSE).

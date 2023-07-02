@@ -34,16 +34,10 @@ class Game {
     });
 
     document.addEventListener("click", (e) => {
-      const invalidTags = ["svg", "path", "polygon", "line", "BUTTON", "SPAN"];
+      console.log(e.target.tagName);
+      const invalidTags = ["svg", "path", "polygon", "line", "BUTTON", "SPAN", "LABEL", "UL", "LI"];
       if (invalidTags.includes(e.target.tagName)) return;
       this.onAction();
-    });
-
-    document.addEventListener("touchstart", (e) => {
-      const invalidTags = ["svg", "path", "polygon", "line", "BUTTON", "SPAN"];
-      if (invalidTags.includes(e.target.tagName)) return;
-      e.preventDefault();
-      // this.onAction();
     });
   }
 
@@ -207,7 +201,7 @@ class Game {
 
     if (score > highScore) {
       setTimeout(() => {
-        playSound(SOUNDS.breakRecord, 0.35);
+        playSound(SOUNDS.breakRecord, 0.5);
       }, 500);
       this.gameResult1.innerHTML = "Congratulations!";
       this.gameResult2.innerHTML = "You have broken your own record!";

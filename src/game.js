@@ -7,7 +7,7 @@ class Game {
       ENDED: "ended",
       RESETTING: "resetting",
     };
-    this.difficulty = Number(localStorage.getItem("sns-difficulty")) || 1;
+    this.difficulty = Number(localStorage.getItem(KEYS.difficultLevel)) || 1;
     this.blocks = [];
     this.state = this.STATES.LOADING;
     this.stage = new Stage();
@@ -34,10 +34,14 @@ class Game {
     });
 
     document.addEventListener("click", (e) => {
+      const invalidTags = ["svg", "path", "polygon", "line", "BUTTON", "SPAN"];
+      if (invalidTags.includes(e.target.tagName)) return;
       this.onAction();
     });
 
     document.addEventListener("touchstart", (e) => {
+      const invalidTags = ["svg", "path", "polygon", "line", "BUTTON", "SPAN"];
+      if (invalidTags.includes(e.target.tagName)) return;
       e.preventDefault();
       // this.onAction();
     });
@@ -68,7 +72,7 @@ class Game {
 
   startGame() {
     if (this.state != this.STATES.PLAYING) {
-      new Audio(SOUNDS.start).play();
+      playSound(SOUNDS.click);
       this.scoreContainer.innerHTML = "0";
       this.updateState(this.STATES.PLAYING);
       this.addBlock();
@@ -180,17 +184,36 @@ class Game {
     this.updateState(this.STATES.ENDED);
 
     const score = Number(this.scoreContainer.innerHTML);
-    const highestScore = Number(localStorage.getItem("sns_highest-score")) || 0;
+    const difficultLevel = Number(localStorage.getItem(KEYS.difficultLevel)) || 1;
+    const stats = JSON.parse(localStorage.getItem(KEYS.stats)) || {
+      easy: {
+        highScore: 0,
+        attempt: 0,
+        totalScore: 0,
+      },
+      medium: {
+        highScore: 0,
+        attempt: 0,
+        totalScore: 0,
+      },
+      hard: {
+        highScore: 0,
+        attempt: 0,
+        totalScore: 0,
+      },
+    };
+    const difficultLabel = DIFFICULT_LABELS[difficultLevel];
+    const highScore = stats[difficultLabel].highScore;
 
-    if (score > highestScore) {
+    if (score > highScore) {
+      playSound(SOUNDS.breakRecord, 0.35);
       this.gameResult1.innerHTML = "Congratulations!";
       this.gameResult2.innerHTML = "You have broken your own record!";
-      new Audio(SOUNDS.breakRecord).play();
-      localStorage.setItem("sns_highest-score", score);
-    } else if (score >= highestScore / 2 && highestScore - score < 10) {
+      stats[difficultLabel].highScore = score;
+    } else if (score >= highScore / 2 && highScore - score < 10) {
       this.gameResult1.innerHTML = `You're about to break the record!`;
-      this.gameResult2.innerHTML = `${highestScore - score + 1} more ${
-        highestScore === score ? "stack" : "stacks"
+      this.gameResult2.innerHTML = `${highScore - score + 1} more ${
+        highScore === score ? "stack" : "stacks"
       } and you will get it!`;
     } else {
       const textSamples = [
@@ -202,6 +225,10 @@ class Game {
       this.gameResult1.innerHTML = textSamples[randomIndex];
       this.gameResult2.innerHTML = "";
     }
+
+    stats[difficultLabel].attempt++;
+    stats[difficultLabel].totalScore += score;
+    localStorage.setItem(KEYS.stats, JSON.stringify(stats));
   }
 
   tick() {
@@ -215,4 +242,3 @@ class Game {
 }
 
 let game = new Game();
-new Audio(SOUNDS.start).play();

@@ -11,6 +11,18 @@ const SOUNDS = {
     "assets/sounds/score-perfect-8.wav",
   ],
   miss: "assets/sounds/miss.mp3",
-  start: "assets/sounds/score-perfect-1.wav",
   breakRecord: "assets/sounds/break-record.mp3",
+  click: "assets/sounds/click.wav",
+};
+
+const KEYS = {
+  stats: "sns_stats",
+  isSoundOff: "sns_is-sound-off",
+  difficultLevel: "sns_difficult-level",
+};
+
+const DIFFICULT_LABELS = {
+  1: "easy",
+  2: "medium",
+  3: "hard",
 };

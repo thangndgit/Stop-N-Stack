@@ -13,3 +13,12 @@ const toStandardPath = (path) => {
   if (isInDeployMode()) return "Stop-N-Stack/" + path;
   return path;
 };
+
+const playSound = (path, volume = 1) => {
+  const isSoundOff = (localStorage.getItem(KEYS.isSoundOff) || "false") === "true";
+  if (!isSoundOff) {
+    const sound = new Audio(path);
+    sound.volume = volume;
+    sound.play();
+  }
+};

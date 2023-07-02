@@ -7,7 +7,6 @@ class Game {
       ENDED: "ended",
       RESETTING: "resetting",
     };
-    this.difficulty = Number(localStorage.getItem(KEYS.difficultLevel)) || 1;
     this.blocks = [];
     this.state = this.STATES.LOADING;
     this.stage = new Stage();
@@ -34,7 +33,6 @@ class Game {
     });
 
     document.addEventListener("click", (e) => {
-      console.log(e.target.tagName);
       const invalidTags = ["svg", "path", "polygon", "line", "BUTTON", "SPAN", "LABEL", "UL", "LI"];
       if (invalidTags.includes(e.target.tagName)) return;
       this.onAction();
@@ -163,7 +161,7 @@ class Game {
 
     this.scoreContainer.innerHTML = String(this.blocks.length - 1);
 
-    const newKidOnTheBlock = new Block(lastBlock, this.difficulty);
+    const newKidOnTheBlock = new Block(lastBlock);
     this.newBlocks.add(newKidOnTheBlock.mesh);
     this.blocks.push(newKidOnTheBlock);
 

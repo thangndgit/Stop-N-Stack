@@ -1,5 +1,5 @@
 class Block {
-  constructor(block, speedLevel = 1) {
+  constructor(block) {
     // Set size and position
     this.MOVE_AMOUNT = 12;
     this.STATES = { ACTIVE: "active", STOPPED: "stopped", MISSED: "missed" };
@@ -35,6 +35,7 @@ class Block {
     this.state = this.index > 1 ? this.STATES.ACTIVE : this.STATES.STOPPED;
 
     // Set direction
+    const speedLevel = localStorage.getItem(KEYS.difficultLevel) || 1;
     this.speed = -0.1 - this.index * 0.004 * speedLevel;
     if (this.speed < -4) this.speed = -4;
     this.direction = this.speed;
